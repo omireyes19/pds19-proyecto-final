@@ -2,7 +2,8 @@
 name = "imdb"
 version = "0.1.0"
 description = ""
-authors = ["rluiseugenio <lugerojon@gmail.com>"]
+
+authors = ["rluiseugenio <lugerojon@gmail.com>", "omireyes19"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -15,6 +16,7 @@ pytest = "^3.0"
 
 [tool.poetry.scripts]
 imdb = "imdb:imdb"
+
 
 [build-system]
 requires = ["poetry>=0.12"]
