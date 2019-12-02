@@ -22,7 +22,7 @@ SELECT  tconst as title_identifier,
       END
    ) AS anio_fin,
  split_part(genres,',',1) as genero_primario,
- split_part(genres,',',2) raw.title_basicsas genero_secundario,
+ split_part(genres,',',2) as genero_secundario,
  split_part(genres,',',3) as genero_terciario,
 (
       CASE
