@@ -1,8 +1,5 @@
 #!/bin/bash
-sudo su postgres
-createuser imdb -D -l -P
-createdb -O imdb imdb
-psql -h 0.0.0.0 -u
-imdb -d imdb -w;
-\q
-exit
+sudo -i -u postgres psql -c "create role imdb login ;"
+sudo -i -u postgres psql -c "alter role imdb with encrypted password 'some_password';"
+sudo -i -u postgres psql -c "create database imdb;"
+sudo -i -u postgres psql -c "grant all privileges on database imdb to imdb;"
