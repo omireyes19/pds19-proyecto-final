@@ -1,0 +1,4 @@
+[default]
+dburl = 'postgresql://service=imdb'
+pgconnstring = 'user=imdb dbname=imdb port=5432 host=0.0.0.0 password=some_password'
+imdbdir = '/home/vagrant/data/pds19-proyecto-final/imdb/data'

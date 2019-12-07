@@ -1,0 +1,4 @@
+[default]
+dburl = 'postgresql://service=berka'
+pgconnstring = 'user=berka dbname=berka port=5432 host=0.0.0.0 password='07039290'
+berkadir = '/home/nanounanue/tmp/berka'
