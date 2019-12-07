@@ -58,10 +58,11 @@ def create_raw_tables(ctx):
 @imdb.command()
 @click.pass_context
 def check_tables(ctx):
-    query = 'SELECT * FROM raw.title_episode'
+    query = 'SELECT * FROM raw.title_ratings limit 5'
     conn =  ctx.obj['conn']
     with conn.cursor() as cur:
          cur.execute(query)
+         print(cur.fetchall())
          t = 'hola.culeros.vayanse.alv'
          print(t.replace(".", "_"))
 
@@ -72,10 +73,10 @@ def load_imdb(ctx):
     with conn.cursor() as cursor:
         for data_file in Path(settings.get('IMDBDIR')).glob('*.tsv'):
             print(data_file)
-            table = data_file.system
+            table = data_file.stem
             table2 = table.replace(".", "_")
             print(table2)
-            sql_statement = f"copy raw.{table2} from stdin with tsv header delimiter as ';'"
+            sql_statement = f"copy raw.{table2} from stdin with csv header delimiter as '\t'"
             print(sql_statement)
             buffer = io.StringIO()
             with open(data_file,'r') as data:
