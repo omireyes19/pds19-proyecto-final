@@ -15,16 +15,13 @@ from dynaconf import settings
 
 from pathlib import Path
 
-# Importamos la función 'config' del config.py file
-from config import config
-#obtenemos parámetros de configuracion
-params = config()
 
 @click.group()
 @click.pass_context
 def imdb(ctx):
     ctx.ensure_object(dict)
-    conn = psycopg2.connect(**params)#settings.get('PGCONNSTRING'))
+    conn = psycopg2.connect(dbname='imdb', user='imdb',
+                        password='some_password', host = 'localhost', port = '5432')
     conn.autocommit = True
     ctx.obj['conn'] = conn
 
@@ -41,9 +38,11 @@ def imdb(ctx):
 def create_schemas(ctx):
     query = ctx.obj['queries'].get('create_schemas')
     conn =  ctx.obj['conn']
+    print(conn)
     with conn.cursor() as cur:
          cur.execute(query)
-         print(query)
+       	 conn.commit
+       	 print(query)
 
 
 @imdb.command()
@@ -57,25 +56,14 @@ def create_raw_tables(ctx):
 
 @imdb.command()
 @click.pass_context
-def check_tables(ctx):
-    query = 'SELECT * FROM raw.title_episode'
-    conn =  ctx.obj['conn']
-    with conn.cursor() as cur:
-         cur.execute(query)
-         t = 'hola.culeros.vayanse.alv'
-         print(t.replace(".", "_"))
-
-@imdb.command()
-@click.pass_context
 def load_imdb(ctx):
     conn = ctx.obj['conn']
     with conn.cursor() as cursor:
-        for data_file in Path(settings.get('IMDBDIR')).glob('*.tsv'):
+        for data_file in Path(settings.get('data')).glob('*.tsv'):
             print(data_file)
             table = data_file.system
-            table2 = table.replace(".", "_")
-            print(table2)
-            sql_statement = f"copy raw.{table2} from stdin with tsv header delimiter as ';'"
+            print(table)
+            sql_statement = f"copy raw.{table} from stdin with tsv header delimiter as ';'"
             print(sql_statement)
             buffer = io.StringIO()
             with open(data_file,'r') as data:
