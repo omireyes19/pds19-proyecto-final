@@ -76,7 +76,7 @@ def load_imdb(ctx):
             table = data_file.stem
             table2 = table.replace(".", "_")
             print(table2)
-            sql_statement = f"copy raw.{table2} from stdin with csv header delimiter as '\t'"
+            sql_statement = f"copy raw.{table2} from stdin "
             print(sql_statement)
             buffer = io.StringIO()
             with open(data_file,'r') as data:
@@ -86,9 +86,12 @@ def load_imdb(ctx):
 
 @imdb.command()
 @click.pass_context
-def to_cleaned():
-    query = ctx.obj['queries'].get('to_cleaned')
-    print(query)
+def to_clean(ctx):
+    query = ctx.obj['queries'].get('to_clean')
+    conn = ctx.obj['conn']
+    with conn.cursor() as cur:
+         cur.execute(query)
+       	 print(query)
 
 @imdb.command()
 @click.pass_context
