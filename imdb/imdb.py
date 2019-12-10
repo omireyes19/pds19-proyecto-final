@@ -86,8 +86,8 @@ def load_imdb(ctx):
 
 @imdb.command()
 @click.pass_context
-def to_clean(ctx):
-    query = ctx.obj['queries'].get('to_clean')
+def to_cleaned(ctx):
+    query = ctx.obj['queries'].get('to_cleaned')
     conn = ctx.obj['conn']
     with conn.cursor() as cur:
          cur.execute(query)
@@ -95,9 +95,49 @@ def to_clean(ctx):
 
 @imdb.command()
 @click.pass_context
+def to_cleaned2(ctx):
+    query = ctx.obj['queries'].get('to_cleaned2')
+    conn = ctx.obj['conn']
+    with conn.cursor() as cur:
+         cur.execute(query)
+       	 print(query)
+
+@imdb.command()
+@click.pass_context
+def create_indexes_cleaned(ctx):
+    query = ctx.obj['queries'].get('create_indexes_cleaned')
+    conn = ctx.obj['conn']
+    with conn.cursor() as cur:
+         cur.execute(query)
+       	 print(query)
+
+@imdb.command()
+@click.pass_context
+def create_indexes_cleaned2(ctx):
+    query = ctx.obj['queries'].get('create_indexes_cleaned2')
+    conn = ctx.obj['conn']
+    with conn.cursor() as cur:
+         cur.execute(query)
+       	 print(query)
+
+@imdb.command()
+@click.pass_context
+def create_indexes_cleaned3(ctx):
+    query = ctx.obj['queries'].get('create_indexes_cleaned3')
+    conn = ctx.obj['conn']
+    with conn.cursor() as cur:
+         cur.execute(query)
+       	 print(query)
+
+
+@imdb.command()
+@click.pass_context
 def to_semantic():
     query = ctx.obj['queries'].get('to_semantic')
-    print(query)
+    conn = ctx.obj['conn']
+    with conn.cursor() as cur:
+         cur.execute(query)
+       	 print(query)
 
 @imdb.command()
 @click.pass_context
