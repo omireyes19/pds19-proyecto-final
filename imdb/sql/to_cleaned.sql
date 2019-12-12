@@ -137,7 +137,7 @@ drop table if exists cleaned.titulos_episodios;
 create table cleaned.titulos_episodios 
 as (
 SELECT  "parentTconst" as titulo_identificador,
-	tconst as episode_identifier,
+	tconst as episodio_identificador,
 	 (
       CASE
       WHEN "seasonNumber" in ('\N') THEN

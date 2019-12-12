@@ -93,19 +93,6 @@ create table raw.title_crew (
 
 comment on table raw.title_crew is 'describe las características de los directores y escritores de las obras';
 
-drop table if exists raw.title_principals;
-
-create table raw.title_principals (
-  "tconst" TEXT,
-    "ordering" TEXT,
-    "nconst" TEXT,
-    "category" TEXT,
-    "job" TEXT,
-    "characters" TEXT
-);
-
-comment on table raw.title_principals is 'describe las características de las tareas que realizan las personas en las peliculas parte 1';
-
 drop table if exists raw.title_principals1;
 
 create table raw.title_principals1 (
