@@ -27,4 +27,4 @@ tail -n +2 title.principalsac.tsv | head -n -1 > title.principals3.tsv
 rm title.principalsac.tsv
 tail -n +2 title.principalsad.tsv > title.principals4.tsv
 rm title.principalsad.tsv
-
+rm title.principals.tsv
