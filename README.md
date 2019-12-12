@@ -106,7 +106,7 @@ Las 7 bases de datos y las variables que contiene cada una son las siguientes:
 Dentro de vagrant clonar el [repositorio](https://github.com/omireyes19/pds19-proyecto-final)
 
 ~~~~bash
-cd [escribir aquí la ruta donde se desea descargar el repositorio]
+cd 
 git clone https://github.com/omireyes19/pds19-proyecto-final.git
 ~~~~
 
